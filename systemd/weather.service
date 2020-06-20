@@ -1,0 +1,10 @@
+[Unit]
+Description=Get latest Weather data at home
+
+[Service]
+Type=simple
+ExecStart=/usr/local/weather/run.sh
+WorkingDirectory=/usr/local/weather
+
+[Install]
+WantedBy=multi-user.target

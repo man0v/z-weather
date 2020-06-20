@@ -1,0 +1,9 @@
+[Unit]
+Description=Run weather updates every 10 minutes
+
+[Timer]
+OnCalendar=*:0/5
+Unit=weather.service
+
+[Install]
+WantedBy=timers.target
