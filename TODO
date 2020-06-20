@@ -1,3 +1,7 @@
 testing
 README
 package - setup.py/pipx
+Add more providers
+Customize the requests
+Store data on more outputs
+add command line arguments
