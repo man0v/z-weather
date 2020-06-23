@@ -68,7 +68,7 @@ def parse_conf():
 def main():
 
     # Get config
-    conf = parse_config()
+    conf = parse_conf()
 
     # Get Lat/Lon for weather retrieval
     if conf['geocoder'].lower() != 'no' and conf['geocoder'].lower() != 'false':
@@ -92,7 +92,7 @@ def main():
 
         res = json.loads(out.data.decode("utf-8"))
     except CannotGetError:
-        grace_exit("API call returned HTTP code: " + str(out.status))
+        grace_exit("API call returned HTTP code: " + str(out.status) + "Try again later")
 
     # Define output string
     weather = ''
@@ -104,13 +104,13 @@ def main():
     else:
         weather = res['weather'][0]['description']
 
-    out = "Weather in {} is {}C with {}".format(res['name'], res['main']['temp'], weather)
+    out = "Weather in {} is {}C with {}\n".format(res['name'], res['main']['temp'], weather)
 
     try:
         with open(conf['data_store'], 'w') as f:
             f.write(out)
     except IOError:
-        grace_exit("Could not write to 
+        grace_exit("Could not write to " + conf['data_store'])
 
 if __name__ == "__main__":
     main()
